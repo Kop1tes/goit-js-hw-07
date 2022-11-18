@@ -1,9 +1,4 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
-
-// console.log(galleryItems);
-
-// console.log(createGallery(galleryItems));
 
 const gallery = document.querySelector('.gallery');
 const imgGallery = createGallery(galleryItems);
@@ -25,19 +20,31 @@ function createGallery(galleryItems) {
 </div>
     `
     }).join('');
-}
+};
 
 gallery.addEventListener('click', onGalleryClick);
 
 function onGalleryClick(event) {
     event.preventDefault();
-    if (!event.target.classList.contains('gallery')) {
+    if (event.target.nodeName !== 'IMG') {
         return;
     }
 
     const instance = basicLightbox.create(
-	`<img src = "${event.target.dataset.source}"> width = "800" height = "600"`
-);
+	`<img src = "${event.target.dataset.source}" width = "800" height = "600">`
+  );
+
     instance.show();
-    console.log(event.target);
-}
+  console.log(event);
+  
+
+function onEscapeModalClose(event) {
+  if (event.key === "Escape") {
+      instance.close();
+    }
+};
+
+  window.addEventListener("keydown", onEscapeModalClose);
+};
+
+
