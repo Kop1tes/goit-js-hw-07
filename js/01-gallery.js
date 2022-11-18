@@ -36,8 +36,8 @@ function onGalleryClick(event) {
     }
 
     const instance = basicLightbox.create(
-	document.querySelector('.gallery')
-)
-    
+	`<img src = "${event.target.dataset.source}"> width = "800" height = "600"`
+);
+    instance.show();
     console.log(event.target);
 }
